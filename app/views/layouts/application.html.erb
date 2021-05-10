@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Store</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'products', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <%= javascript_pack_tag 'custom', 'data-turbolinks-track': 'reload' %>
+    
+    
+  </head>
+<% @categories = Category.all %>
+  <body class="container-fluid">
+    <header>
+        <div class="container-fix">
+            <div class="container">
+                <div class="logo-container pull-left">
+                    <div id="logo">
+                      <a href="">
+                          <img src="" title="Socketworks Stores" alt="Socketworks Stores" class="img-responsive">
+                      </a>
+                    </div>
+                </div>
+                <div class="block-right pull-right">
+                    <div class="setting pull-right">
+                        <button data-toggle="dropdown" type="button" aria-expanded="false">
+                            <i class="fa fa-menu"></i>
+                        </button>
+                    </div>
+                    <div class="cart-container pull-right">
+                        <div id="cart" class="btn-group btn-block">
+                        <a href="<%= cart_path(@current_cart)%>">
+                            <button type="button" data-toggle="dropdown" class="btn dropdown-toggle">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span id="cart-total"><%= @current_cart.line_items.length %></span>
+                            </button>
+                          </a>
+                        </div>
+                    </div>
+                    <div class="search-containers pull-right"></div>
+                </div>
+                <div class="main-menu" style="width:809px">
+                    <div class="hozmenu-container">
+                        <div class="nav-container visible-lg visible-md">
+                            <div id="pt_custommenu" class="pt_custommenu">
+                             
+                            <% @categories.each do |p| %>
+                                <div id="pt_menu_home" class="pt_menu">
+                                    <div class="parentMenu">
+                                        <a href="">
+                                            <span><%= p.category_name %></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            <% end %>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <%= yield %>
+  </body>
+</html>

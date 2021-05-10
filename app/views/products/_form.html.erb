@@ -1,0 +1,53 @@
+<%= form_with(model: product) do |form| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+        <% product.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :model %>
+    <%= form.text_field :model %>
+  </div>
+
+  <div class="field">
+    <%= form.label :brands %>
+    <%= form.text_field :brands %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.number_field :price %>
+  </div>
+  <br>
+  <div class="field">
+  <%= form.label "Product Category" %>
+  <%= form.select(:category_id, category, {include_blank: "Select Category"}, { :class => 'my_style_class' }) %>
+  
+  </div>
+  <br>
+  <div class="field">
+    <%= form.label "Product Image" %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

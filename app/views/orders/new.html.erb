@@ -1,0 +1,96 @@
+<div class="breadcrumbs">
+    <div>
+        <ul class="breadcrumb-child">
+            <li><a href="">Home </a></li>
+            <%= '/' %>
+            <li><a href="">Checkout</a></li>
+        </ul>
+    </div>
+</div>
+<br>
+<div id="checkout-checkout" class="container">
+    <div class="row">
+        <div id="content" class="col-sm-12">
+        <button type="button" class="paystack-button"> Pay </button>
+            <h1>Checkout</h1>
+            <div id="accordion">
+                
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-default collapsed" data-toggle="collapse"  aria-expanded="false" aria-controls="collapseTwo">
+                        <h4>Confirm Order</h4>
+                        </button>
+                    </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                          <thead>
+                            <tr>
+                              <td class="text-left">Product Name</td>
+                              <td class="text-left">Model</td>
+                              <td class="text-right">Quantity</td>
+                              <td class="text-right">Unit Price</td>
+                              <td class="text-right">Total</td>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          <% @current_cart.line_items.each do |item| %>
+                            <tr>
+                                <td class="text-left"><a href="<%= product_path(item.product.id) %>"><%= item.product.title%></a>         </td>
+                                <td class="text-left"><%= item.product.model%></td>
+                                <td class="text-right"><%= item.quantity %></td>
+                                <td class="text-right">₦<%= number_with_delimiter(item.product.price) %></td>
+                                <td class="text-right">₦<%= number_with_delimiter(item.total_price) %>.00</td>
+                            </tr>
+                          <% end %>
+                                    </tbody>
+                          
+                          <tfoot>
+                          
+                              <tr>
+                            <td colspan="4" class="text-right"><strong>Sub-Total:</strong></td>
+                            <td class="text-right">₦<%= number_with_delimiter(@current_cart.sub_total) %>.00</td>
+                          </tr>
+                              <tr>
+                            <td colspan="4" class="text-right"><strong>Flat Shipping Rate:</strong></td>
+                            <td class="text-right">₦5.00</td>
+                          </tr>
+                              <tr>
+                            <td colspan="4" class="text-right"><strong>Total:</strong></td>
+                            <td class="text-right">₦<%= number_with_delimiter(@current_cart.sub_total + 5) %>.00</td>
+                          </tr>
+                                </tfoot>
+                          
+                        </table>
+                      </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-default" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <h4>Delivery Details</h4>
+                        </button>
+                    </h5>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <%= render 'form', order: @order %>
+                        
+                    </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+
+<%= link_to 'Back', checkouts_path %>

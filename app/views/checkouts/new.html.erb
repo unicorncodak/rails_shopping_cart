@@ -1,0 +1,98 @@
+<div class="breadcrumbs">
+    <div>
+        <ul class="breadcrumb-child">
+            <li><a href="">Home </a></li>
+            <%= '/' %>
+            <li><a href="">Checkout</a></li>
+        </ul>
+    </div>
+</div>
+<br>
+<div id="checkout-checkout" class="container">
+    <div class="row">
+        <div id="content" class="col-sm-12">
+            <h1>Checkout</h1>
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-default" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <h4>Delivery Details</h4>
+                        </button>
+                    </h5>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <%= render 'form', checkout: @checkout %>
+                        
+                    </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-default collapsed" data-toggle="collapse"  aria-expanded="false" aria-controls="collapseTwo">
+                        <h4>Confirm Order</h4>
+                        </button>
+                    </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                          <thead>
+                            <tr>
+                              <td class="text-left">Product Name</td>
+                              <td class="text-left">Model</td>
+                              <td class="text-right">Quantity</td>
+                              <td class="text-right">Unit Price</td>
+                              <td class="text-right">Total</td>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          
+                              <tr>
+                            <td class="text-left"><a href="http://audrizconcepts.com.ng/index.php?route=product/product&amp;product_id=60">Ankara Long Gown</a>         </td>
+                            <td class="text-left">ALG03</td>
+                            <td class="text-right">1</td>
+                            <td class="text-right">₦35,000.00</td>
+                            <td class="text-right">₦35,000.00</td>
+                          </tr>
+                                    </tbody>
+                          
+                          <tfoot>
+                          
+                              <tr>
+                            <td colspan="4" class="text-right"><strong>Sub-Total:</strong></td>
+                            <td class="text-right">₦35,000.00</td>
+                          </tr>
+                              <tr>
+                            <td colspan="4" class="text-right"><strong>Flat Shipping Rate:</strong></td>
+                            <td class="text-right">₦5.00</td>
+                          </tr>
+                              <tr>
+                            <td colspan="4" class="text-right"><strong>Total:</strong></td>
+                            <td class="text-right">₦35,005.00</td>
+                          </tr>
+                                </tfoot>
+                          
+                        </table>
+                        <div class="buttons clearfix">
+                            <div class="pull-right">
+                                <button class="btn btn-primary try" id="try">Checkout</button>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+
+<%= link_to 'Back', checkouts_path %>

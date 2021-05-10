@@ -1,0 +1,100 @@
+<p id="notice"><%= notice %></p>
+<div class="breadcrumbs">
+    <div>
+        <h2><%= @product.title %></h2>
+        <ul class="breadcrumb-child">
+            <li><a href="">Home </a></li>
+            <%= '/' %>
+            <li><a href=""><%= @product.title %></a></li>
+            <%= '/' %>
+            <li><a href=""><%= @product.title %></a></li>
+        </ul>
+    </div>
+</div>
+<div id="product-product" class="container">
+    <div class="row">
+        <div id="content" class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-6 block-1 owl-style2">
+                    <div class="thumbnails">
+                        <a class="thumbnail">
+                          <% if @product.image.attached? %>
+                          <img src="<%=(url_for(@product.image)) %>" title="<%= @product.title %>" alt="<%= @product.title %>" class="img-fluid img-thumbnail">
+                          <% end %>
+                            
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-6 block-2">
+                    <h1 class="product-name"><%= @product.title %></h1>
+                    <div class="ratings">
+                        <div class="rating-box"></div>
+                        <a href="" />0 reviews</a> /
+                        <a href="">Write Review</a>
+                    </div>
+                    <ul class="list-unstyled">
+                        <li class="price">
+                            <span>₦<%= number_with_delimiter(@product.price)   %>.00</span>
+                        </li>
+                    </ul>
+                    <ul class="list-unstyled">
+                        <li>
+                            Brands
+                            <a href="">
+                                <span class="ex-text"><%= @product.brands %></span>
+                            </a>
+                        </li>
+                        <li>
+                            Product Code:
+                            <span class="ex-text"><%= @product.model %></span>
+                        </li>
+                        <li>
+                            Availability
+                            <span class="ex-text">In Stock</span>
+                        </li>
+                    </ul>
+                    <div id="product">
+                        <div class="form-group">
+                            <label class="control-panel" for="input-quantity">Qty</label>
+                            <div class="quantity-box">
+                                <input type="text" name="quantity" value="1" size="2" id="input-quantity" class="form-control">
+                                <input type="button" id="plus" value="+" class="form-control">
+                                <input type="button" id="minus" value="-" class="form-control">
+                            </div>
+                            <%= button_to "Add #{@product.title} to cart", line_items_path(:product_id => @product.id), id: "button-cart", class: "btn" %>
+                            
+                            <div class="btn-actions">
+                                <buttons class="btn-wishlist" type="button" data-toggle="tooltip" data-original-title="Add to Wishlist">
+                                    <i class="fa fa-list"></i>
+                                </buttons>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 block-3">
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<p>
+  <strong>Title:</strong>
+  <%= @product.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @product.price %>
+</p>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>

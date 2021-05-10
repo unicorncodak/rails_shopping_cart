@@ -1,0 +1,48 @@
+<%= form_with(model: checkout) do |form| %>
+  <% if checkout.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(checkout.errors.count, "error") %> prohibited this checkout from being saved:</h2>
+
+      <ul>
+        <% checkout.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :firstname, class: "form-label" %>
+    <%= form.text_field :firstname, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lastname %>
+    <%= form.text_field :lastname, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state %>
+    <%= form.text_field :state, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :country %>
+    <%= form.text_field :country, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :guest %>
+    <%= form.number_field :guest, class: "form-control" %>
+  </div>
+  <br>
+  
+  <div class="actions pull-right">
+    <%= form.submit 'Checkout', :class => 'btn btn-primary' %>
+  </div>
+<% end %>

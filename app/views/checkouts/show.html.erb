@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Firstname:</strong>
+  <%= @checkout.firstname %>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @checkout.lastname %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @checkout.address %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @checkout.address %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @checkout.state %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @checkout.country %>
+</p>
+
+<p>
+  <strong>Guest:</strong>
+  <%= @checkout.guest %>
+</p>
+
+<%= link_to 'Edit', edit_checkout_path(@checkout) %> |
+<%= link_to 'Back', checkouts_path %>

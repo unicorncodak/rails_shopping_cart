@@ -1,0 +1,110 @@
+<div class="breadcrumbs">
+    <div>
+        <ul class="breadcrumb-child">
+            <li><a href="">Home </a></li>
+            <%= '/' %>
+            <li><a href="">Shopping Cart</a></li>
+        </ul>
+    </div>
+</div>
+
+<div id="checkout-cart" class="container" style="margin-top:40px">
+        <div class="row">
+            <div id="content" class="col-sm-12">
+                <h1>Shopping Cart (0.00kg)</h1>
+                <button type="submit" class="btn btn-primary">
+                <%= link_to "Empty cart", cart_path(@current_cart),method: :delete, data: {confirm: "Are you sure?"}, style:"color:#fff" %>
+                </button>
+                <br> <br>
+                <form action="" method="" enctype="multipart/formdata">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <td class="text-center">Image</td>
+                                    <td class="text-left">Product Name</td>
+                                    <td class="text-left">Model</td>
+                                    <td class="text-left">Quantity</td>
+                                    <td class="text-right">Unit Price</td>
+                                    <td class="text-right">Total</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% @cart.line_items.each do |line_item| %>
+                                    <tr>
+                                        <td class="text-center">
+                                        <a href="http://audrizconcepts.com.ng/index.php?route=product/product&product_id=63">
+                                            <% if line_item.product.image.attached? %>
+                                                <img src="<%=(url_for(line_item.product.image)) %>" alt="<%= line_item.product.title %>" class="img-fluid img-thumbnail" style="height:100px">
+                                            <% end %>
+                                        </a>
+                                    </td>
+                                    <td class="text-left">
+                                        <a href="<%= product_path(line_item.product.id) %>"><%= line_item.product.title %></a>
+                                    </td>
+                                    <td class="text-left"><%= line_item.product.model %></td>
+                                    <td class="text-left">
+                                        <div class="input-group btn-block" style="max-width:200px">
+                                            <input type="text" name="quantity" value="<%= line_item.quantity %>" size="1" class="form-control">
+                                            <span class="input-group-btn">
+                                                <button type="submit" class="btn btn-primary">
+                                                <%= link_to line_item_add_path(:id => line_item), method: :post, style:"color:#fff" do %>
+                                                    <i class="fa fa-plus"></i>
+                                                <% end %>
+                                                </button>
+                                                <button type="submit" class="btn btn-success">
+                                                <%= link_to line_item_reduce_path(:id => line_item), method: :post, style:"color:#fff" do %>
+                                                    <i class="fa fa-minus"></i>
+                                                <% end %>
+                                                </button>
+                                                <button type="submit" class="btn btn-danger">
+                                                <%= link_to line_item_path(line_item), method: :delete, style:"color:#fff" do %>
+                                                    <i class="fa fa-times-circle"></i>
+                                                <% end %>
+                                                    
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="text-right">₦<%= number_with_delimiter(line_item.product.price) %>.00</td>
+                                    <td class="text-right">₦<%= number_with_delimiter(line_item.total_price) %>.00</td>
+                                    </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                </form>
+                <br>
+                <div class="row">
+                    <div class="col-md-4 offset-md-8">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td class="text-right">
+                                        <strong>Sub-Total:</strong>
+                                    </td>
+                                    <td class="text-right">₦<%= number_with_delimiter(@cart.sub_total) %>.00</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right">
+                                        <strong>Total:</strong>
+                                    </td>
+                                    <td class="text-right">₦<%= number_with_delimiter(@cart.sub_total) %>.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="buttons clearfix">
+                    <div class="pull-left">
+                        <a href="<%= root_path %>" class="btn btn-default">Continue Shopping</a>
+                    </div>
+                    <div class="pull-right">
+                    <a href="<%= new_order_path %>" class="btn btn-primary">Checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<br><br>

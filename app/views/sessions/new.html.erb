@@ -1,0 +1,50 @@
+<div class="breadcrumbs" style="padding: 120px 0 100px;">
+    <div>
+        <ul class="breadcrumb-child">
+            <li><a href="">Home </a></li>
+            <%= '/' %>
+            <li><a href="">Login</a></li>
+        </ul>
+    </div>
+</div>
+<p id="alert"><%= alert %></p>
+<div class="container" id="account-login">
+    <div class="row">
+        <div class="col-sm-12" id="content">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="well">
+                        <h2>New Customer</h2>
+                        <p><strong>Register</strong></p>
+                        <p>
+                        By creating an account you will be able to shop faster, be up to date on an orders status, and keep track of the orders you have previously made.
+                        <br>
+                        <a href="" class="btn btn-primary">Continue</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="well">
+                        <h2>Returning Customer</h2>
+                        <p><strong>I am a returning customer</strong></p>
+
+                        <%= form_tag sessions_path do |form| %>
+                            <div class="form-group">
+                                <label class="control-label" for="input-email">Enter your email address here...</label>
+                                <%= text_field_tag :email, "", class:"form-control" %>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="input-password">Password</label>
+                                <%= password_field_tag :password, "", class:'form-control' %>
+                            </div>
+                            <div class="actions">
+                              <%= submit_tag "Login", class:"btn btn-primary" %>
+                            </div>
+                          <% end %>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
